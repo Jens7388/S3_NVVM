@@ -1,12 +1,13 @@
 ﻿<UserControl x:Class="S3_MVVM.SuppliersControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:S3_MVVM"
              xmlns:ViewModels="clr-namespace:S3_MVVM.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
              Loaded="OnLoaded">
     <UserControl.DataContext>
         <ViewModels:SupplierViewModel />
@@ -15,12 +16,73 @@
         <ListBox ItemsSource="{Binding Suppliers}"
                  SelectedItem="{Binding SelectedSupplier}"
                  Margin="10,2,525,10" />
-        <TextBlock HorizontalAlignment="Left"
-                   Margin="578,-1,0,0"
-                   Text="{Binding SelectedSupplier.ContactName}"
-                   TextWrapping="Wrap"
-                   VerticalAlignment="Top"
-                   Width="200"
-                   Height="36" />
+        <Grid Margin="276,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <TextBox   Text="{Binding SelectedSupplier.ContactName}"
+                       Grid.Column="1"
+                       Grid.Row="0"/>
+            
+            <TextBox   Text="{Binding SelectedSupplier.CompanyName}"
+                       Grid.Column="1"
+                       Grid.Row="1" />
+            
+            <TextBox   Text="{Binding SelectedSupplier.ContactTitle}"
+                       Grid.Column="1"
+                       Grid.Row="2" />
+            
+            <TextBox   Text="{Binding SelectedSupplier.Address}"
+                       Grid.Column="1"
+                       Grid.Row="3" />
+            
+            <TextBox   Text="{Binding SelectedSupplier.City}"
+                       Grid.Column="1"
+                       Grid.Row="4"/>
+            
+            <TextBox   Text="{Binding SelectedSupplier.Region}"
+                       Grid.Column="1"
+                       Grid.Row="5" />
+            
+            <TextBox   Text="{Binding SelectedSupplier.PostalCode}"
+                       Grid.Column="1"
+                       Grid.Row="6" />
+            
+            <TextBox   Text="{Binding SelectedSupplier.Country}"
+                       Grid.Column="1"
+                       Grid.Row="7"/>
+            
+            <TextBox   Text="{Binding SelectedSupplier.Phone}"
+                       Grid.Column="1"
+                       Grid.Row="8"/>
+           
+            <TextBox   Text="{Binding SelectedSupplier.Fax}"
+                       Grid.Column="1"
+                       Grid.Row="9"/>
+            <TextBox   Text="{Binding SelectedSupplier.HomePage}"
+                       Grid.Column="1"
+                       Grid.Row="10" />
+            <ComboBox Grid.Column="1"
+                      Grid.Row="11"
+                      ItemsSource="{Binding SelectedSupplier.Products}"/>
+        </Grid>
+
     </Grid>
 </UserControl>

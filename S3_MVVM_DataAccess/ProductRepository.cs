@@ -10,11 +10,13 @@ namespace S3_MVVM_DataAccess
     public class ProductRepository: RepositoryBase<Product>
     {
         protected const string supplier = "Supplier";
+        protected const string category = "Category";
 
         public override Product GetBy(int id)
         {
             return context.Products
                 .Include(supplier)
+                .Include(category)
                 .SingleOrDefault(p => p.ProductId == id);
         }
 

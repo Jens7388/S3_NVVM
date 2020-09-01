@@ -24,5 +24,9 @@ namespace S3_NVVM_Entities
         public string HomePage { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
+        public override string ToString()
+        {
+            return CompanyName;
+        }
     }
 }

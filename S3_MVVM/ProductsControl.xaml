@@ -15,7 +15,7 @@
     <Grid>
         <ListBox ItemsSource="{Binding Products}"
                  SelectedItem="{Binding SelectedProduct}"
-                 Margin="10,2,584,10" />
+                 Margin="10,2,525,10" />
         <TextBlock HorizontalAlignment="Left"
                    Margin="578,-1,0,0"
                    Text="{Binding SelectedProduct.Supplier.CompanyName}"

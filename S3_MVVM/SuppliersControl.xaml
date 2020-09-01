@@ -14,10 +14,10 @@
     <Grid>
         <ListBox ItemsSource="{Binding Suppliers}"
                  SelectedItem="{Binding SelectedSupplier}"
-                 Margin="10,2,584,10" />
+                 Margin="10,2,525,10" />
         <TextBlock HorizontalAlignment="Left"
                    Margin="578,-1,0,0"
-                   Text="{Binding SelectedSupplier}"
+                   Text="{Binding SelectedSupplier.ContactName}"
                    TextWrapping="Wrap"
                    VerticalAlignment="Top"
                    Width="200"

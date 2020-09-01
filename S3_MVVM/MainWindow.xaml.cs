@@ -29,7 +29,7 @@ namespace S3_NVVM
             InitializeComponent();
             productsControl = new ProductsControl();
             suppliersControl = new SuppliersControl();
-            Display(suppliersControl);
+            Display(productsControl);
         }
 
         private void Navigation_Click(object sender, RoutedEventArgs e)

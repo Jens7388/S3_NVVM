@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace S3_NVVM_Entities
 {
-    public partial class Suppliers
+    public partial class Supplier
     {
-        public Suppliers()
+        public Supplier()
         {
             Products = new HashSet<Product>();
         }

@@ -22,7 +22,12 @@ namespace S3_NVVM_Entities
         public bool Discontinued { get; set; }
 
         public virtual Categories Category { get; set; }
-        public virtual Suppliers Supplier { get; set; }
+        public virtual Supplier Supplier { get; set; }
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+
+        public override string ToString()
+        {
+            return ProductName;
+        }
     }
 }

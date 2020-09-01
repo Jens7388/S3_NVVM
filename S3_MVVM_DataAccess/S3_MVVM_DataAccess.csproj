@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\S3_NVVM_Entities\S3_MVVM_Entities.csproj" />
+    <ProjectReference Include="..\S3_MVVM_Entities\S3_MVVM_Entities.csproj" />
   </ItemGroup>
 
 </Project>

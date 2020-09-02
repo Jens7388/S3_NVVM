@@ -1,5 +1,8 @@
 ﻿using S3_MVVM.ViewModels;
 using S3_MVVM_DataAccess;
+
+using S3_NVVM_Entities;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +26,8 @@ namespace S3_MVVM
         ProductsViewModel productsViewModel;
         ProductRepository repo;
         private bool isLoaded;
-        private bool isEditing;
+        private bool editIsOngoing;
+        private bool additionIsOngoing;
 
         public ProductsControl()
         {
@@ -41,7 +45,7 @@ namespace S3_MVVM
         }
         private void ButtonAllowEditing_Click(object sender, RoutedEventArgs e)
         {
-            if(!isEditing)
+            if(!editIsOngoing)
             {
                 if(productsViewModel.SelectedProduct == null)
                 {
@@ -53,7 +57,8 @@ namespace S3_MVVM
                     gridProductInfo.IsEnabled = true;
                     productListBox.IsEnabled = false;
                     buttonSaveEdit.IsEnabled = true;
-                    isEditing = true;
+                    editIsOngoing = true;
+                    buttonAddNewObject.IsEnabled = false;
                 }
             }
             else
@@ -71,20 +76,68 @@ namespace S3_MVVM
 
         private void ButtonAddNewObject_Click(object sender, RoutedEventArgs e)
         {
-
+            if(!additionIsOngoing)
+            {
+                buttonAllowEditing.IsEnabled = false;
+                gridProductInfo.IsEnabled = true;
+                productListBox.IsEnabled = false;
+                productsViewModel.SelectedProduct = null;
+                buttonAddNewObject.Content = "Cancel";
+                buttonSaveNewObject.IsEnabled = true;
+                additionIsOngoing = true;
+            }
+            else
+            {
+                StopAddition();
+            }
         }
 
         private void ButtonSaveNewObject_Click(object sender, RoutedEventArgs e)
         {
+            repo = new ProductRepository();
+            int.TryParse(textBoxCategoryId.Text, out int categoryId);
+            int.TryParse(textBoxSupplierId.Text, out int supplierId);
+            decimal.TryParse(textBoxUnitPrice.Text, out decimal unitPrice);
+            short.TryParse(textBoxUnitsInStock.Text, out short unitsInStock);
+            short.TryParse(textBoxUnitsOnOrder.Text, out short unitsOnOrder);
+            short.TryParse(textBoxReorderLevel.Text, out short reorderLevel);
+            bool.TryParse(textBoxDiscontinued.Text, out bool discontinued);
 
+            Product product = new Product()
+            {
+                ProductName = textBoxProductName.Text,
+                CategoryId = categoryId,
+                SupplierId = supplierId,
+                QuantityPerUnit = textBoxQuantity.Text,
+                UnitPrice = unitPrice,
+                UnitsInStock = unitsInStock,
+                UnitsOnOrder = unitsOnOrder,
+                ReorderLevel = reorderLevel,
+                Discontinued = discontinued,
+            };
+            repo.Add(product);
+            productsViewModel.Products.Add(product);
+            StopAddition();
         }
+
         private void StopEditing()
         {
-            isEditing = false;
+            editIsOngoing = false;
             buttonAllowEditing.Content = "Edit";
             gridProductInfo.IsEnabled = false;
             productListBox.IsEnabled = true;
             buttonSaveEdit.IsEnabled = false;
+            buttonAddNewObject.IsEnabled = true;
+        }
+
+        private void StopAddition()
+        {
+            additionIsOngoing = false;
+            buttonAddNewObject.Content = "Add new object";
+            productListBox.IsEnabled = true;
+            buttonSaveNewObject.IsEnabled = false;
+            buttonAllowEditing.IsEnabled = true;
+            gridProductInfo.IsEnabled = false;
         }
     }
 }

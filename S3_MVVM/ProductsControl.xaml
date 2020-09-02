@@ -42,8 +42,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
+                </Grid.RowDefinitions>
 
             <Label Grid.Column="0"
                    Grid.Row="0"
@@ -89,58 +88,61 @@
                    Grid.Row="10"
                    Content="Supplier:" />
 
-            <Label Grid.Column="0"
-                   Grid.Row="11"
-                   Content="Order details:" />
-
-            <TextBox Text="{Binding SelectedProduct.ProductName}"
+            <TextBox x:Name="textBoxProductName"
+                     Text="{Binding SelectedProduct.ProductName}"
                      Grid.Column="1"
                      Grid.Row="0" />
 
-            <TextBox Text="{Binding SelectedProduct.SupplierId}"
+            <TextBox x:Name="textBoxSupplierId"
+                     Text="{Binding SelectedProduct.SupplierId}"
                      Grid.Column="1"
                      Grid.Row="1" />
 
-            <TextBox Text="{Binding SelectedProduct.CategoryId}"
+            <TextBox x:Name="textBoxCategoryId"
+                     Text="{Binding SelectedProduct.CategoryId}"
                      Grid.Column="1"
                      Grid.Row="2" />
 
-            <TextBox Text="{Binding SelectedProduct.QuantityPerUnit}"
+            <TextBox x:Name="textBoxQuantity"
+                     Text="{Binding SelectedProduct.QuantityPerUnit}"
                      Grid.Column="1"
                      Grid.Row="3" />
 
-            <TextBox Text="{Binding SelectedProduct.UnitPrice}"
+            <TextBox x:Name="textBoxUnitPrice"
+                     Text="{Binding SelectedProduct.UnitPrice}"
                      Grid.Column="1"
                      Grid.Row="4" />
 
-            <TextBox Text="{Binding SelectedProduct.UnitsInStock}"
+            <TextBox x:Name="textBoxUnitsInStock"
+                     Text="{Binding SelectedProduct.UnitsInStock}"
                      Grid.Column="1"
                      Grid.Row="5" />
 
-            <TextBox Text="{Binding SelectedProduct.UnitsOnOrder}"
+            <TextBox x:Name="textBoxUnitsOnOrder"
+                     Text="{Binding SelectedProduct.UnitsOnOrder}"
                      Grid.Column="1"
                      Grid.Row="6" />
 
-            <TextBox Text="{Binding SelectedProduct.ReorderLevel}"
+            <TextBox x:Name="textBoxReorderLevel"
+                     Text="{Binding SelectedProduct.ReorderLevel}"
                      Grid.Column="1"
                      Grid.Row="7" />
 
-            <TextBox Text="{Binding SelectedProduct.Discontinued}"
+            <TextBox x:Name="textBoxDiscontinued"
+                     Text="{Binding SelectedProduct.Discontinued}"
                      Grid.Column="1"
                      Grid.Row="8" />
 
             <TextBox Text="{Binding SelectedProduct.Category.CategoryName}"
                      Grid.Column="1"
+                     IsReadOnly="True"
                      Grid.Row="9" />
 
             <TextBox Text="{Binding SelectedProduct.Supplier.CompanyName}"
                      Grid.Column="1"
+                     IsReadOnly="True"
                      Grid.Row="10" />
-
-            <ComboBox Grid.Column="1"
-                      Grid.Row="11"
-                      ItemsSource="{Binding SelectedProduct.OrderDetails}" />
-        </Grid>
+            </Grid>
     </Grid>
     <Grid Grid.Row="1"
           Background="Gray"
@@ -162,11 +164,13 @@
                 IsEnabled="False"
                 Click="ButtonSaveEdit_Click"
                 Grid.Column="1" />
-        <Button Content="Add new object"
+        <Button x:Name="buttonAddNewObject"
+                Content="Add new object"
                 Width="100"
                 Click="ButtonAddNewObject_Click"
                 Grid.Column="2" />
-        <Button Content="Save new object"
+        <Button x:Name="buttonSaveNewObject"
+                Content="Save new object"
                 Width="100"
                 IsEnabled="False"
                 Click="ButtonSaveNewObject_Click"

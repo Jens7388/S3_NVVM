@@ -1,7 +1,7 @@
 ﻿using S3_MVVM.ViewModels;
 
 using S3_MVVM_DataAccess;
-
+using S3_NVVM_Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,7 +25,8 @@ namespace S3_MVVM
         SupplierViewModel supplierViewModel;
         SupplierRepository repo;
         private bool isLoaded;
-        private bool isEditing;
+        private bool editIsOngoing;
+        private bool additionIsOngoing;
 
         public SuppliersControl()
         {
@@ -43,7 +44,7 @@ namespace S3_MVVM
         }
         private void ButtonAllowEditing_Click(object sender, RoutedEventArgs e)
         {
-            if(!isEditing)
+            if(!editIsOngoing)
             {
                 if(supplierViewModel.SelectedSupplier == null)
                 {
@@ -55,7 +56,8 @@ namespace S3_MVVM
                     gridSupplierInfo.IsEnabled = true;
                     supplierListBox.IsEnabled = false;
                     buttonSaveEdit.IsEnabled = true;
-                    isEditing = true;
+                    editIsOngoing = true;
+                    buttonAddNewObject.IsEnabled = false;
                 }
             }
             else
@@ -73,21 +75,64 @@ namespace S3_MVVM
 
         private void ButtonAddNewObject_Click(object sender, RoutedEventArgs e)
         {
-
+            if(!additionIsOngoing)
+            {
+                buttonAllowEditing.IsEnabled = false;
+                gridSupplierInfo.IsEnabled = true;
+                supplierListBox.IsEnabled = false;
+                supplierViewModel.SelectedSupplier = null;
+                buttonAddNewObject.Content = "Cancel";
+                buttonSaveNewObject.IsEnabled = true;
+                additionIsOngoing = true;
+            }
+            else
+            {
+                StopAddition();
+            }
         }
 
         private void ButtonSaveNewObject_Click(object sender, RoutedEventArgs e)
         {
+            {
+                repo = new SupplierRepository();
 
+                Supplier supplier = new Supplier()
+                {
+                    CompanyName = textBoxCompanyName.Text,
+                    ContactName = textBoxContactName.Text,
+                    Address = textBoxAddress.Text,
+                    City = textBoxCity.Text,
+                    Region = textBoxRegion.Text,
+                    PostalCode = textBoxPostalCode.Text,
+                    Country = textBoxCountry.Text,
+                    Phone = textBoxPhone.Text,
+                    Fax = textBoxFax.Text,
+                    HomePage = textBoxHomePage.Text,
+                };
+                repo.Add(supplier);
+                supplierViewModel.Suppliers.Add(supplier);
+                StopAddition();
+            }
         }
 
         private void StopEditing()
         {
-            isEditing = false;
+            editIsOngoing = false;
             buttonAllowEditing.Content = "Edit";
             gridSupplierInfo.IsEnabled = false;
             supplierListBox.IsEnabled = true;
             buttonSaveEdit.IsEnabled = false;
+            buttonAddNewObject.IsEnabled = true;
+        }
+
+        private void StopAddition()
+        {
+            additionIsOngoing = false;
+            buttonAddNewObject.Content = "Add new object";
+            supplierListBox.IsEnabled = true;
+            buttonSaveNewObject.IsEnabled = false;
+            buttonAllowEditing.IsEnabled = true;
+            gridSupplierInfo.IsEnabled = false;
         }
     }
 }

@@ -13,13 +13,21 @@
         <ViewModels:ProductsViewModel />
     </UserControl.DataContext>
     <Grid>
-        <ListBox ItemsSource="{Binding Products}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="375px"></RowDefinition>
+            <RowDefinition Height="50px"></RowDefinition>
+        </Grid.RowDefinitions>
+    <Grid Grid.Row="0">
+        <ListBox x:Name="productListBox"
+                 ItemsSource="{Binding Products}"
                  SelectedItem="{Binding SelectedProduct}"
                  Margin="10,2,525,10" />
-        <Grid Margin="276,0,0,0">
+        <Grid Margin="276,0,0,0"
+              x:Name="gridProductInfo"
+              IsEnabled="False">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="350"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -133,5 +141,36 @@
                       Grid.Row="11"
                       ItemsSource="{Binding SelectedProduct.OrderDetails}" />
         </Grid>
+    </Grid>
+    <Grid Grid.Row="1"
+          Background="Gray"
+          Height="50">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="buttonAllowEditing"
+                Content="Edit"
+                Width="100"
+                Click="ButtonAllowEditing_Click"
+                Grid.Column="0" />
+        <Button x:Name="buttonSaveEdit"
+                Content="Save edit"
+                Width="100"
+                IsEnabled="False"
+                Click="ButtonSaveEdit_Click"
+                Grid.Column="1" />
+        <Button Content="Add new object"
+                Width="100"
+                Click="ButtonAddNewObject_Click"
+                Grid.Column="2" />
+        <Button Content="Save new object"
+                Width="100"
+                IsEnabled="False"
+                Click="ButtonSaveNewObject_Click"
+                Grid.Column="3" />
+    </Grid>
     </Grid>
 </UserControl>

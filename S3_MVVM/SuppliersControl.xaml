@@ -13,125 +13,164 @@
         <ViewModels:SupplierViewModel />
     </UserControl.DataContext>
     <Grid>
-        <ListBox ItemsSource="{Binding Suppliers}"
-                 SelectedItem="{Binding SelectedSupplier}"
-                 Margin="10,2,525,10" />
-        <Grid Margin="276,0,0,0">
+        <Grid.RowDefinitions>
+                <RowDefinition Height="375px"></RowDefinition>
+                <RowDefinition Height="50px"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <ListBox x:Name="supplierListBox"
+                         ItemsSource="{Binding Suppliers}"
+                         SelectedItem="{Binding SelectedSupplier}"
+                         Margin="10,2,525,10" />
+                <Grid Margin="276,0,0,0"
+                      x:Name="gridSupplierInfo"
+                      IsEnabled="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="350"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0"
+                           Grid.Row="0"
+                           Content="Company name:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="1"
+                           Content="Contact name:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="2"
+                           Content="Contact title:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="3"
+                           Content="Address:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="4"
+                           Content="City:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="5"
+                           Content="Region:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="6"
+                           Content="Postal code:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="7"
+                           Content="Country:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="8"
+                           Content="Phone:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="9"
+                           Content="Fax:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="10"
+                           Content="Homepage:" />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="11"
+                           Content="Products:" />
+
+                    <TextBox Text="{Binding SelectedSupplier.ContactName}"
+                             Grid.Column="1"
+                             Grid.Row="0" />
+
+                    <TextBox Text="{Binding SelectedSupplier.CompanyName}"
+                             Grid.Column="1"
+                             Grid.Row="1" />
+
+                    <TextBox Text="{Binding SelectedSupplier.ContactTitle}"
+                             Grid.Column="1"
+                             Grid.Row="2" />
+
+                    <TextBox Text="{Binding SelectedSupplier.Address}"
+                             Grid.Column="1"
+                             Grid.Row="3" />
+
+                    <TextBox Text="{Binding SelectedSupplier.City}"
+                             Grid.Column="1"
+                             Grid.Row="4" />
+
+                    <TextBox Text="{Binding SelectedSupplier.Region}"
+                             Grid.Column="1"
+                             Grid.Row="5" />
+
+                    <TextBox Text="{Binding SelectedSupplier.PostalCode}"
+                             Grid.Column="1"
+                             Grid.Row="6" />
+
+                    <TextBox Text="{Binding SelectedSupplier.Country}"
+                             Grid.Column="1"
+                             Grid.Row="7" />
+
+                    <TextBox Text="{Binding SelectedSupplier.Phone}"
+                             Grid.Column="1"
+                             Grid.Row="8" />
+
+                    <TextBox Text="{Binding SelectedSupplier.Fax}"
+                             Grid.Column="1"
+                             Grid.Row="9" />
+
+                    <TextBox Text="{Binding SelectedSupplier.HomePage}"
+                             Grid.Column="1"
+                             Grid.Row="10" />
+
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="11"
+                              ItemsSource="{Binding SelectedSupplier.Products}" />
+                </Grid>
+            </Grid>
+        <Grid Grid.Row="1"
+              Background="Gray"
+              Height="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <Label Grid.Column="0"
-                   Grid.Row="0"
-                   Content="Company name:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="1"
-                   Content="Contact name:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="2"
-                   Content="Contact title:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="3"
-                   Content="Address:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="4"
-                   Content="City:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="5"
-                   Content="Region:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="6"
-                   Content="Postal code:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="7"
-                   Content="Country:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="8"
-                   Content="Phone:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="9"
-                   Content="Fax:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="10"
-                   Content="Homepage:" />
-
-            <Label Grid.Column="0"
-                   Grid.Row="11"
-                   Content="Products:" />
-
-            <TextBox Text="{Binding SelectedSupplier.ContactName}"
-                     Grid.Column="1"
-                     Grid.Row="0" />
-
-            <TextBox Text="{Binding SelectedSupplier.CompanyName}"
-                     Grid.Column="1"
-                     Grid.Row="1" />
-
-            <TextBox Text="{Binding SelectedSupplier.ContactTitle}"
-                     Grid.Column="1"
-                     Grid.Row="2" />
-
-            <TextBox Text="{Binding SelectedSupplier.Address}"
-                     Grid.Column="1"
-                     Grid.Row="3" />
-
-            <TextBox Text="{Binding SelectedSupplier.City}"
-                     Grid.Column="1"
-                     Grid.Row="4" />
-
-            <TextBox Text="{Binding SelectedSupplier.Region}"
-                     Grid.Column="1"
-                     Grid.Row="5" />
-
-            <TextBox Text="{Binding SelectedSupplier.PostalCode}"
-                     Grid.Column="1"
-                     Grid.Row="6" />
-
-            <TextBox Text="{Binding SelectedSupplier.Country}"
-                     Grid.Column="1"
-                     Grid.Row="7" />
-
-            <TextBox Text="{Binding SelectedSupplier.Phone}"
-                     Grid.Column="1"
-                     Grid.Row="8" />
-
-            <TextBox Text="{Binding SelectedSupplier.Fax}"
-                     Grid.Column="1"
-                     Grid.Row="9" />
-
-            <TextBox Text="{Binding SelectedSupplier.HomePage}"
-                     Grid.Column="1"
-                     Grid.Row="10" />
-
-            <ComboBox Grid.Column="1"
-                      Grid.Row="11"
-                      ItemsSource="{Binding SelectedSupplier.Products}" />
+            <Button x:Name="buttonAllowEditing"
+                    Content="Edit"
+                    Width="100"
+                    Click="ButtonAllowEditing_Click"
+                    Grid.Column="0" />
+            <Button x:Name="buttonSaveEdit"
+                    Content="Save edit"
+                    Width="100"
+                    IsEnabled="False"
+                    Click="ButtonSaveEdit_Click"
+                    Grid.Column="1" />
+            <Button Content="Add new object"
+                    Width="100"
+                    Click="ButtonAddNewObject_Click"
+                    Grid.Column="2" />
+            <Button Content="Save new object"
+                    Width="100"
+                    IsEnabled="False"
+                    Click="ButtonSaveNewObject_Click"
+                    Grid.Column="3" />
         </Grid>
     </Grid>
 </UserControl>

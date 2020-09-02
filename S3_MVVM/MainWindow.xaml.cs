@@ -55,5 +55,25 @@ namespace S3_NVVM
         {
             displayedUserControl.Content = userControl;
         }
+
+        private void ButtonAllowEditing_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ButtonSaveEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonAddNewObject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonSaveNewObject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

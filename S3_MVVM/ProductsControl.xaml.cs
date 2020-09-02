@@ -1,4 +1,5 @@
 ﻿using S3_MVVM.ViewModels;
+using S3_MVVM_DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +21,9 @@ namespace S3_MVVM
     public partial class ProductsControl: UserControl
     {
         ProductsViewModel productsViewModel;
+        ProductRepository repo;
+        private bool isLoaded;
+        private bool isEditing;
 
         public ProductsControl()
         {
@@ -29,7 +33,58 @@ namespace S3_MVVM
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            productsViewModel.Initialize();
+            if(!isLoaded)
+            {
+                productsViewModel.Initialize();
+                isLoaded = true;
+            }
+        }
+        private void ButtonAllowEditing_Click(object sender, RoutedEventArgs e)
+        {
+            if(!isEditing)
+            {
+                if(productsViewModel.SelectedProduct == null)
+                {
+                    MessageBox.Show("You need to select a product before editing!");
+                }
+                else
+                {
+                    buttonAllowEditing.Content = "Cancel Edit";
+                    gridProductInfo.IsEnabled = true;
+                    productListBox.IsEnabled = false;
+                    buttonSaveEdit.IsEnabled = true;
+                    isEditing = true;
+                }
+            }
+            else
+            {
+                StopEditing();
+            }
+        }
+
+        private void ButtonSaveEdit_Click(object sender, RoutedEventArgs e)
+        {
+            repo = new ProductRepository();
+            repo.Update(productsViewModel.SelectedProduct);
+            StopEditing();
+        }
+
+        private void ButtonAddNewObject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonSaveNewObject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void StopEditing()
+        {
+            isEditing = false;
+            buttonAllowEditing.Content = "Edit";
+            gridProductInfo.IsEnabled = false;
+            productListBox.IsEnabled = true;
+            buttonSaveEdit.IsEnabled = false;
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S3_NVVM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="510" Width="800">
     <DockPanel>
         <Grid Background="Gray"
               DockPanel.Dock="Top"
@@ -18,14 +18,12 @@
                         Click="Navigation_Click" />
                 <Grid Width="585" />
                 <Button Uid="2"
-                        Content="Leverandører"
+                        Content="Suppliers"
                         Width="100"
                         Click="Navigation_Click" />
             </StackPanel>
         </Grid>
-        <StatusBar DockPanel.Dock="Bottom"
-                   Background="Gray"
-                   Height="25" />
+
         <UserControl x:Name="displayedUserControl" />
     </DockPanel>
 </Window>

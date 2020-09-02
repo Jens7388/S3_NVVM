@@ -22,7 +22,7 @@ namespace S3_MVVM_DataAccess
 
         public override IEnumerable<Product> GetAll()
         {
-            return context.Products.Include(supplier);
+            return context.Products.Include(supplier).Include(category);
         }
     }
 }

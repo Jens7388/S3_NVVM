@@ -27,6 +27,7 @@ namespace S3_MVVM
         private bool isLoaded;
         private bool editIsOngoing;
         private bool additionIsOngoing;
+        
 
         public SuppliersControl()
         {
@@ -42,6 +43,7 @@ namespace S3_MVVM
                 isLoaded = true;
             }        
         }
+
         private void ButtonAllowEditing_Click(object sender, RoutedEventArgs e)
         {
             if(!editIsOngoing)
